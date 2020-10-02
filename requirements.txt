@@ -1,7 +1,7 @@
 streamlit
 numpy
 pandas
-matplotlib
-datetime
-statsmodels
+matplotlib.pyplot
+datetime.datetime
+statsmodels.tsa.statespace.sarimax
 tensorflow
