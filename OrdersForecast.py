@@ -152,21 +152,18 @@ def get_model(mod_name):
 
 train_fc, test_fc = get_model(model_name)
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
-plt.figure(figsize=(16,7))
+fig, ax = plt.subplots()
 if st.checkbox('Show forecast period ONLY'):
-    plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
-    #plt.plot(sarima_model.fittedvalues.groupby(pd.Grouper(freq='M')).sum(), label='Training')
-    plt.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast', color= '#2ca02c')
+    ax.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
+    ax.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast', color= '#2ca02c')
 else:
-    plt.plot(df.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
-    plt.plot(train_fc.groupby(pd.Grouper(freq='M')).sum(), label='Training')
-    #plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='validation')
-    plt.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast')
+    ax.plot(df.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
+    ax.plot(train_fc.groupby(pd.Grouper(freq='M')).sum(), label='Training')
+    ax.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast')
 
-plt.legend(loc='upper left', fontsize=9)
-plt.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
-st.pyplot()
+ax.legend(loc='upper left', fontsize=9)
+ax.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
+st.pyplot(fig)
 
 #------------------------------------------------
 # Forecast plot comments
