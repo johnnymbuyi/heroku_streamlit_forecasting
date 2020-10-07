@@ -152,17 +152,17 @@ def get_model(mod_name):
 
 train_fc, test_fc = get_model(model_name)
 
-fig, ax = plt.subplots()
+plt.figure(figsize=(16,7))
 if st.checkbox('Show forecast period ONLY'):
-    ax.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
-    ax.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast', color= '#2ca02c')
+    plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
+    plt.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast', color= '#2ca02c')
 else:
-    ax.plot(df.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
-    ax.plot(train_fc.groupby(pd.Grouper(freq='M')).sum(), label='Training')
-    ax.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast')
+    plt.plot(df.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
+    plt.plot(train_fc.groupby(pd.Grouper(freq='M')).sum(), label='Training')
+    plt.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast')
 
-ax.legend(loc='upper left', fontsize=9)
-ax.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
+plt.legend(loc='upper left', fontsize=9)
+plt.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
 st.pyplot() # change to st.pyplot(fig) --> from Dec-20
 st.set_option('deprecation.showPyplotGlobalUse', False) 
 
