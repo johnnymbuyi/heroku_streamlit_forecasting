@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import tensorflow as tf
+import matplotlib.dates as mpl_dates
 
 
 
@@ -158,6 +159,9 @@ plt.figure(figsize=(16,7))
 if st.checkbox('Show forecast period ONLY'):
     plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
     plt.plot(test_fc.groupby(pd.Grouper(freq='M')).sum(), label='Forecast', color= '#2ca02c')
+    plt.gcf().autofmt_xdate()
+    date_format = mpl_dates.DateFormatter('%B %Y')
+    plt.gca().xaxis.set_major_formatter(date_format)
 else:
     plt.plot(df.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
     plt.plot(train_fc.groupby(pd.Grouper(freq='M')).sum(), label='Training')
