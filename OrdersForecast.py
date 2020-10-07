@@ -152,6 +152,8 @@ def get_model(mod_name):
 
 train_fc, test_fc = get_model(model_name)
 
+
+st.set_option('deprecation.showPyplotGlobalUse', False) 
 plt.figure(figsize=(16,7))
 if st.checkbox('Show forecast period ONLY'):
     plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
@@ -164,7 +166,6 @@ else:
 plt.legend(loc='upper left', fontsize=9)
 plt.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
 st.pyplot() # change to st.pyplot(fig) --> from Dec-20
-st.set_option('deprecation.showPyplotGlobalUse', False) 
 
 #------------------------------------------------
 # Forecast plot comments
