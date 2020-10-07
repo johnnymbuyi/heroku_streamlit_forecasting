@@ -152,7 +152,7 @@ def get_model(mod_name):
 
 train_fc, test_fc = get_model(model_name)
 
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 plt.figure(figsize=(16,7))
 if st.checkbox('Show forecast period ONLY'):
     plt.plot(test.groupby(pd.Grouper(freq='M')).sum(), label='Actual', linestyle = '--')
@@ -172,10 +172,10 @@ st.pyplot()
 # Forecast plot comments
 #------------------------------------------------
 st.write('#### Dataset breakdown')
-st.write('###### Training set period  : ',np.min(train_fc.index).strftime('%d/%m%/%Y'),
-                                 ' - ', np.max(train_fc.index).strftime('%d/%m%/%Y'))
-st.write('###### Validation set period: ', np.min(test_fc.index).strftime('%d/%m%/%Y'),
-                                    ' - ', np.max(test_fc.index).strftime('%d/%m%/%Y'))
+st.write('###### Training set period  : ',np.min(train_fc.index).strftime('%d/%m/%Y'),
+                                 ' - ', np.max(train_fc.index).strftime('%d/%m/%Y'))
+st.write('###### Validation set period: ', np.min(test_fc.index).strftime('%d/%m/%Y'),
+                                    ' - ', np.max(test_fc.index).strftime('%d/%m/%Y'))
 
 '''
 
