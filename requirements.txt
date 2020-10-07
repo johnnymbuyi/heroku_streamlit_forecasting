@@ -4,4 +4,4 @@ pandas
 matplotlib
 datetime
 statsmodels
-tensorflow
+tensorflow-cpu
