@@ -164,6 +164,7 @@ else:
 ax.legend(loc='upper left', fontsize=9)
 ax.title(f"{model_name} Model Performance: Forecast vs Actual Orders", fontsize=18)
 st.pyplot() # change to st.pyplot(fig) --> from Dec-20
+st.set_option('deprecation.showPyplotGlobalUse', False) 
 
 #------------------------------------------------
 # Forecast plot comments
