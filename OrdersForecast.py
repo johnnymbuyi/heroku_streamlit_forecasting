@@ -139,7 +139,7 @@ rnn_pred = pd.Series(rnn_pred, index=time_train[window_size:split_time])
 # Plot Forecast against Actuals
 #------------------------------------------------
 #PLOT PARAMETERS
-model_name = st.sidebar.selectbox('Select Forecast Model', ('SARIMA','RNN'))
+model_name = st.sidebar.selectbox('Select Forecast Model', ('RNN','SARIMA'))
 
 def get_model(mod_name):
     if mod_name == 'SARIMA':
@@ -193,8 +193,7 @@ st.write('###### Model Forecast MAE: ',round(test_mae,3))
 '''
 
 '''
-st.write('#### The metric above indicates that on average, the selected model is expected to be off by ', round(test_mae), 'orders when forecasting future sales.')
-
+st.write('#### The metric above indicates that on average, the selected model is expected to be off by ', round(test_mae), 'orders when forecasting future sales. That translates to',round((test_mae/test_fc.mean())*100),'per cent difference between actual and forecasted daily orders.')
 
 
 
